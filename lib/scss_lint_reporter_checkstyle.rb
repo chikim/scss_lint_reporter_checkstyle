@@ -5,7 +5,8 @@ module SCSSLint
 
       output << "<checkstyle version=\"1.5.6\">\n"
       lints.group_by(&:filename).each do |file_name, errors|
-        output << "  <file name=#{file_name.encode(xml: :attr)}>\n"
+        file_name_absolute = File.expand_path file_name
+        output << "  <file name=#{file_name_absolute.encode(xml: :attr)}>\n"
 
         errors.each do |error|
           output << "    <error source=\"#{error.linter.name if error.linter}\" " \
