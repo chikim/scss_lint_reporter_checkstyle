@@ -9,6 +9,7 @@ module SCSSLint
         output << "  <file name=#{file_name_absolute.encode(xml: :attr)}>\n"
 
         errors.each do |error|
+          next if error.severity.to_s == "warning"
           output << "    <error source=\"#{error.linter.name if error.linter}\" " \
              "line=\"#{error.location.line}\" " \
              "column=\"#{error.location.column}\" " \
